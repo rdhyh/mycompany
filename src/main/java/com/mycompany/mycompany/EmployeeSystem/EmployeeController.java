@@ -30,4 +30,13 @@ public class EmployeeController {
         return employeeService.searchEmployeesByName(name);
     }
 
+    @DeleteMapping
+    public void deleteEmployee(
+            @PathVariable("employeeId") Long employeeId) {
+        employeeService.deleteEmployee(employeeId) ;
+
+    }
+
+
+
 }
