@@ -1,6 +1,8 @@
 package com.mycompany.mycompany.EmployeeSystem;
 
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -31,18 +33,20 @@ public class EmployeeController {
     }
 
     @DeleteMapping(path = "{employeeId}")
-    public void deleteEmployee(
-            @PathVariable("employeeId") Long employeeId) {
-        employeeService.deleteEmployee(employeeId) ;
-
+    public ResponseEntity<String> deleteEmployee(@PathVariable("employeeId") Long employeeId) {
+        try {
+            employeeService.deleteEmployee(employeeId);
+            return ResponseEntity.ok("Employee with ID " + employeeId + " has been deleted.");
+        } catch (IllegalStateException e) {
+            // Handle the case where the employee does not exist
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
+        }
     }
 
     @GetMapping("/searchByYearsOfEmployment")
     public List<Employee> searchEmployeesByYears(@RequestParam int yearsOfEmployment) {
         return employeeService.searchEmployeesByYearsOfEmployment(yearsOfEmployment);
     }
-
-
 
 
 }

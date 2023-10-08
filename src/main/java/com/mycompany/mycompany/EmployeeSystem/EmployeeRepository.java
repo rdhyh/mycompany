@@ -20,6 +20,4 @@ public interface EmployeeRepository
     List<Employee> findByYearsOfEmployment(int yearsOfEmployment);
 
 
-
-
 }

@@ -30,7 +30,6 @@ public class Employee {
 
     private LocalDate startDate ;
 
-    @Transient
     private Integer yearsOfEmployment ;
 
     public Employee(Long employeeId, String name, String email, LocalDate startDate) {
@@ -82,9 +81,10 @@ public class Employee {
         this.startDate = startDate;
     }
 
+    @Transient
     public Integer getYearsOfEmployment() {
         LocalDate currentDate = LocalDate.now();
-        Period period = Period.between(startDate, LocalDate.now());
+        Period period = Period.between(startDate, currentDate);
         return period.getYears();
     }
 
@@ -99,7 +99,7 @@ public class Employee {
                 ", name='" + name + '\'' +
                 ", email='" + email + '\'' +
                 ", startDate=" + startDate +
-                ", employment=" +yearsOfEmployment +
+                ", yearsOfEmployment=" + yearsOfEmployment +
                 '}';
     }
 }
