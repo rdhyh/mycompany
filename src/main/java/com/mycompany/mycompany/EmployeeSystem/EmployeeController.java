@@ -37,6 +37,12 @@ public class EmployeeController {
 
     }
 
+    @GetMapping("/searchByYearsOfEmployment")
+    public List<Employee> searchEmployeesByYears(@RequestParam int yearsOfEmployment) {
+        return employeeService.searchEmployeesByYearsOfEmployment(yearsOfEmployment);
+    }
+
+
 
 
 }

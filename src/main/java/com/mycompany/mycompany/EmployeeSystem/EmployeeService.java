@@ -35,8 +35,6 @@ public class EmployeeService {
     }
 
 
-
-
     public List<Employee> searchEmployeesByName(String name) {
         return employeeRepository.findByNameContaining(name);
     }
@@ -52,4 +50,10 @@ public class EmployeeService {
         }
         employeeRepository.deleteById(employeeId);
     }
+
+    public List<Employee> searchEmployeesByYearsOfEmployment(int yearsOfEmployment) {
+        return employeeRepository.findByYearsOfEmployment(yearsOfEmployment);
+    }
+
+
 }
