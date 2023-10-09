@@ -17,6 +17,7 @@ public interface EmployeeRepository
 //    @Query("SELECT s FROM Employee s WHERE S.name = ?1")
     List<Employee> findByNameContaining(String name);
 
+    @Query("SELECT s FROM Employee s WHERE s.yearsOfEmployment= ?1 ")
     List<Employee> findByYearsOfEmployment(int yearsOfEmployment);
 
 

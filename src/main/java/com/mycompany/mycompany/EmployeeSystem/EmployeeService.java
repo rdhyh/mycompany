@@ -27,9 +27,10 @@ public class EmployeeService {
         Optional<Employee> employeeOptional =
                 employeeRepository.findEmployeeByEmail(employee.getEmail()) ;
         if (employeeOptional.isPresent()) {
-            throw new IllegalStateException("email takem") ;
+            throw new IllegalStateException("email taken") ;
 
         }
+
         employeeRepository.save(employee) ;
 
     }
@@ -53,6 +54,19 @@ public class EmployeeService {
 
     public List<Employee> searchEmployeesByYearsOfEmployment(int yearsOfEmployment) {
         return employeeRepository.findByYearsOfEmployment(yearsOfEmployment);
+    }
+
+    public Employee updateEmployee(Long employeeId, Employee updatedEmployee) {
+        Employee existingEmployee = employeeRepository.findById(employeeId)
+                .orElseThrow(() -> new IllegalStateException("Employee with ID " + employeeId + " not found"));
+
+        // Update the employee's information
+        existingEmployee.setName(updatedEmployee.getName());
+        existingEmployee.setEmail(updatedEmployee.getEmail());
+        existingEmployee.setStartDate(updatedEmployee.getStartDate());
+
+        // Save the updated employee
+        return employeeRepository.save(existingEmployee);
     }
 
 

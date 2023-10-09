@@ -48,5 +48,12 @@ public class EmployeeController {
         return employeeService.searchEmployeesByYearsOfEmployment(yearsOfEmployment);
     }
 
+    @PutMapping("/{employeeId}")
+    public Employee updateEmployee(
+            @PathVariable("employeeId") Long employeeId,
+            @RequestBody Employee updatedEmployee) {
+        return employeeService.updateEmployee(employeeId, updatedEmployee);
+    }
+
 
 }
