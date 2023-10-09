@@ -15,14 +15,27 @@ public class EmployeeConfig {
     CommandLineRunner commandLineRunner(EmployeeRepository repository) {
         return args -> {
 
-          Employee Farah = new Employee(
+          Employee farah = new Employee(
                   "Farah",
                   "Farah@gmail.com",
                   LocalDate.of(2020, Month.APRIL, 8)
           )  ;
 
+            int yearsOfEmployment = farah.getYearsOfEmployment();
+            farah.setYearsOfEmployment(yearsOfEmployment);
+
+            Employee james = new Employee(
+                    "James",
+                    "James@gmail.com",
+                    LocalDate.of(2018, Month.JANUARY, 8)
+            )  ;
+
+            yearsOfEmployment = james.getYearsOfEmployment();
+            james.setYearsOfEmployment(yearsOfEmployment);
+
+
           repository.saveAll(
-                  List.of(Farah)
+                  List.of(farah, james)
           );
 
         };

@@ -43,7 +43,7 @@ public class Employee {
     public Employee(String name, String email, LocalDate startDate) {
         this.name = name;
         this.email = email;
-        this.startDate = startDate;
+        this.startDate = startDate ;
     }
 
     public Employee() {
@@ -83,9 +83,14 @@ public class Employee {
 
     @Transient
     public Integer getYearsOfEmployment() {
-        LocalDate currentDate = LocalDate.now();
-        Period period = Period.between(startDate, currentDate);
-        return period.getYears();
+        return Period.between(startDate, LocalDate.now()).getYears();
+    }
+
+    public Employee(String name, String email, LocalDate startDate, Integer yearsOfEmployment) {
+        this.name = name;
+        this.email = email;
+        this.startDate = startDate;
+        this.yearsOfEmployment = yearsOfEmployment;
     }
 
     public void setYearsOfEmployment(Integer yearsOfEmployment) {
